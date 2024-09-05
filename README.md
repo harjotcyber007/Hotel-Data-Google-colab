@@ -38,6 +38,14 @@ plt.title('Reservation status in different hotels',size = 20)
 plt.xlabel('hotel')
 plt.ylabel('number of reservations')
 
+df['month'] = pd.to_datetime(df['lead_time']).dt.month
+
+plt.figure(figsize=(3,6))
+plt.title('ADR per month', fontsize=30)
+sns.barplot(x='month', y='adr', data=df[df['is_canceled'] == 1].groupby('month')[['adr']].sum().reset_index())
+plt.legend(fontsize=20)
+plt.show()
+
 
 plt.figure(figsize = (15,8))
 plt.title('ADR per month', fontsize = 30)
